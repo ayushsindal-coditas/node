@@ -1,0 +1,51 @@
+### These requests work with the VS Code "REST Client" extension.
+### Click "Send Request" above any line that starts with @ or ### to run it.
+
+@baseUrl = http://localhost:4000
+
+### Health check
+GET {{baseUrl}}/health
+
+### List all employees
+GET {{baseUrl}}/api/employees
+
+### Search employees by name/designation/skill
+GET {{baseUrl}}/api/employees?search=Kafka
+
+### Filter employees by status
+GET {{baseUrl}}/api/employees?status=ON_LEAVE
+
+### Get a single employee by id
+GET {{baseUrl}}/api/employees/1
+
+### Create a new employee
+POST {{baseUrl}}/api/employees
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "designation": "Intern",
+  "skills": ["JavaScript"]
+}
+
+### Update an employee
+PUT {{baseUrl}}/api/employees/1
+Content-Type: application/json
+
+{
+  "status": "ON_LEAVE"
+}
+
+### Delete an employee
+DELETE {{baseUrl}}/api/employees/1
+
+### Validation error example (missing required fields)
+POST {{baseUrl}}/api/employees
+Content-Type: application/json
+
+{
+  "name": ""
+}
+
+### 404 example (employee that doesn't exist)
+GET {{baseUrl}}/api/employees/9999
